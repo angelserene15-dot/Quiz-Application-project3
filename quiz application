@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Question
+{
+    char question[200];
+    char optionA[100];
+    char optionB[100];
+    char optionC[100];
+    char optionD[100];
+    char correctAnswer;
+};
+
+int main()
+{
+    struct Question quiz[5];
+
+    strcpy(quiz[0].question, "What is the capital of India?");
+    strcpy(quiz[0].optionA, "Mumbai");
+    strcpy(quiz[0].optionB, "Delhi");
+    strcpy(quiz[0].optionC, "Kolkata");
+    strcpy(quiz[0].optionD, "Chennai");
+    quiz[0].correctAnswer = 'B';
+
+    strcpy(quiz[1].question, "Who is known as the Father of C Language?");
+    strcpy(quiz[1].optionA, "Dennis Ritchie");
+    strcpy(quiz[1].optionB, "James Gosling");
+    strcpy(quiz[1].optionC, "Bjarne Stroustrup");
+    strcpy(quiz[1].optionD, "Guido van Rossum");
+    quiz[1].correctAnswer = 'A';
+
+    strcpy(quiz[2].question, "Which data type stores decimal values?");
+    strcpy(quiz[2].optionA, "int");
+    strcpy(quiz[2].optionB, "char");
+    strcpy(quiz[2].optionC, "float");
+    strcpy(quiz[2].optionD, "void");
+    quiz[2].correctAnswer = 'C';
+
+    strcpy(quiz[3].question, "Which symbol is used for comments in C?");
+    strcpy(quiz[3].optionA, "//");
+    strcpy(quiz[3].optionB, "##");
+    strcpy(quiz[3].optionC, "**");
+    strcpy(quiz[3].optionD, "%%");
+    quiz[3].correctAnswer = 'A';
+
+    strcpy(quiz[4].question, "Which loop executes at least once?");
+    strcpy(quiz[4].optionA, "for");
+    strcpy(quiz[4].optionB, "while");
+    strcpy(quiz[4].optionC, "do-while");
+    strcpy(quiz[4].optionD, "none");
+    quiz[4].correctAnswer = 'C';
+
+    int score = 0;
+    char answer;
+
+    printf("\n=====================================");
+    printf("\n      QUIZ APPLICATION");
+    printf("\n=====================================\n");
+
+    for(int i = 0; i < 5; i++)
+    {
+        printf("\nQuestion %d:\n", i + 1);
+        printf("%s\n", quiz[i].question);
+
+        printf("A. %s\n", quiz[i].optionA);
+        printf("B. %s\n", quiz[i].optionB);
+        printf("C. %s\n", quiz[i].optionC);
+        printf("D. %s\n", quiz[i].optionD);
+
+        printf("Enter your answer (A/B/C/D): ");
+        scanf(" %c", &answer);
+
+        if(answer >= 'a' && answer <= 'z')
+        {
+            answer = answer - 32;
+        }
+
+        if(answer == quiz[i].correctAnswer)
+        {
+            printf("Correct!\n");
+            score++;
+        }
+        else
+        {
+            printf("Wrong! Correct Answer: %c\n",
+                   quiz[i].correctAnswer);
+        }
+    }
+
+    printf("\n=====================================");
+    printf("\nQUIZ COMPLETED");
+    printf("\n=====================================\n");
+
+    printf("Your Score: %d/5\n", score);
+
+    float percentage = (score / 5.0) * 100;
+
+    printf("Percentage: %.2f%%\n", percentage);
+
+    if(percentage >= 80)
+        printf("Grade: A\n");
+    else if(percentage >= 60)
+        printf("Grade: B\n");
+    else if(percentage >= 40)
+        printf("Grade: C\n");
+    else
+        printf("Grade: F\n");
+
+    return 0;
+}
